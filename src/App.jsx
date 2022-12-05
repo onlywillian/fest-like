@@ -1,7 +1,41 @@
+import { useState } from "react";
+import { auth } from "./service/firebaseConfig";
+import { useSignInWithEmailAndPassword} from "react-firebase-hooks/auth";
 import styled from 'styled-components';
 import Logo from './assets/chat-logo.jpg';
 
 function App() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
+
+  function SignIn(e) {
+    e.preventDefault();
+    signInWithEmailAndPassword(email, password);
+  }
+
+  //CARREGANDO
+  if (loading) {
+    return <p>carregando...</p>;
+  }
+
+  //USUARIO LOGADO
+  if (user) {
+    alert('Usuario logado')
+    return console.log(user);
+  }
+
+  //ERRO AO LOGAR
+  if(error){
+    if(error.code == 'auth/user-not-found'){
+      console.log("Usuario nao encontrado")
+    }
+    if(error.code == 'auth/wrong-password'){
+      console.log('Senha invalida')
+    }
+  }
+
   return (
     <Container>
       <Header>
@@ -11,9 +45,9 @@ function App() {
         <HeaderLogo src={Logo}/>
       </Header>
       <Form method="post">
-        <Input type="text" placeholder='Email'/>
-        <Input type="text" placeholder='Senha'/>
-        <Button type='submit'>Enviar</Button>
+        <Input type="text" placeholder='Email'  onChange={(e) => setEmail(e.target.value)}/>
+        <Input type="text" placeholder='Senha'  onChange={(e) => setPassword(e.target.value)}/>
+        <Button type='submit' onClick={SignIn}>Enviar</Button>
       </Form>
     </Container>
   )
