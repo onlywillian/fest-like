@@ -12,7 +12,7 @@ const Post = ({ userName, postText }) => {
                 <div style={{display: 'flex', margin: '5px'}}>
                     <ImageIcon>Like</ImageIcon>
                     <ImageIcon>Deslike</ImageIcon>
-                    <ImageIcon>COmment</ImageIcon>
+                    <ImageIcon>Comment</ImageIcon>
                 </div>
             </Wrapper>
         </Container>
@@ -21,8 +21,7 @@ const Post = ({ userName, postText }) => {
 
 const Container = styled.div`
     display: flex;
-    max-height: 300px;
-    min-height: 100px;
+    gap: 20px;
     border-bottom: 1px solid #aaa;
 `
 const Wrapper = styled.div`
@@ -32,6 +31,7 @@ const Wrapper = styled.div`
 `
 const Nome = styled.b`
     margin: 0 5px;
+    margin-top: 10px;
     font-weight: bold;
     font-size: .8rem;
 `
@@ -39,6 +39,8 @@ const ImageIcon = styled.i`
     
 `
 const Text = styled.div`
-    
+    margin: 0 5px;
+    font-size: .8rem;
+    opacity: .8;
 `
 export default Post;

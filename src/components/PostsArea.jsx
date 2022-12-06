@@ -14,7 +14,7 @@ const PostsArea = () => {
         {
             id: 2,
             userName: 'Will',
-            postText: 'asldasdasldsad'
+            postText: 'asldasdasldsadasldasdasldsadas ldasdasldsadasldasdasldsa dasldasd asldsadas ld asdasldsad asl dasdasldsad'
         },
         {
             id: 3,

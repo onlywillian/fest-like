@@ -31,6 +31,7 @@ const Wrapper = styled.div`
 `
 const Nome = styled.b`
     margin: 0 5px;
+    margin-top: 10px;
     font-weight: bold;
     font-size: .8rem;
 `
