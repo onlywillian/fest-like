@@ -2,15 +2,13 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import SiteLogo from '../assets/chat-logo.jpg';
+import SLogo from '../assets/logo';
 
 const Header = () => {
     return ( 
         <Head>
             <Perfil />
-            <Logo>
-                <img src={SiteLogo} alt="Site Logo" width={50}/>
-            </Logo>
+            <SLogo style={{flex: 1}}/>
         </Head>
      );
 }
@@ -18,16 +16,11 @@ const Header = () => {
 const Head = styled.div`
     display: flex;
     flex: 1;
-    background: #eee;
-    border-bottom: 1px solid #aaa;
-    width: 100vw;
-`
-const Logo = styled.div`
-    flex: 1;
-    height: 100%;
-    display: flex;
     justify-content: center;
     align-items: center;
+    background: var(--main-gray-color);
+    border-bottom: 1px solid #aaa;
+    width: 100vw;
 `
 const Perfil = styled.div`
     position: absolute;

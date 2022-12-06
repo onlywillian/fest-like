@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 import Perfil from './Perfil';
 
+import Galeria from '../assets/galeria';
+
 const PublishArea = () => {
     return ( 
         <Container>
@@ -10,7 +12,7 @@ const PublishArea = () => {
                 <Nome>Flavin do Pneu</Nome>
                 <Input placeholder='Escreva algo para publicar'/>
                 <div style={{display: 'flex', gap: 50, margin: '5px'}}>
-                    <ImageIcon>Imagem</ImageIcon>
+                    <Galeria style={{height: 20, width: 10}}/>
                     <Button>Publicar</Button>
                 </div>
             </Wrapper>
@@ -48,7 +50,7 @@ const ImageIcon = styled.i`
 const Button = styled.button`
     flex: 1;
     border-radius: 0;
-    background: #009;
+    background: var(--main-blue-color);
     color: white;
     font-weight: bold;
     border: none;

@@ -1,18 +1,24 @@
 import styled from 'styled-components';
 
 import Perfil from './Perfil';
+import Like from '../assets/like';
+import Dislike from '../assets/dislike';
+import Comment from '../assets/comentario';
 
 const Post = ({ userName, postText }) => {
     return ( 
         <Container>
             <Perfil />
             <Wrapper>
-                <Nome>{userName}</Nome>
+                <div style={{display: 'flex', width: '100%', justifyContent: 'space-between'}}>
+                    <Nome>{userName}</Nome>
+                    <MoreIcon>{'>'}</MoreIcon>
+                </div>
                 <Text>{postText}</Text>
-                <div style={{display: 'flex', margin: '5px'}}>
-                    <ImageIcon>Like</ImageIcon>
-                    <ImageIcon>Deslike</ImageIcon>
-                    <ImageIcon>Comment</ImageIcon>
+                <div style={{display: 'flex', margin: '5px', width: '100%', gap: 20}}>
+                    <Like />
+                    <Dislike />
+                    <Comment />
                 </div>
             </Wrapper>
         </Container>
@@ -21,6 +27,7 @@ const Post = ({ userName, postText }) => {
 
 const Container = styled.div`
     display: flex;
+    position: realative;
     gap: 20px;
     border-bottom: 1px solid #aaa;
 `
@@ -37,6 +44,10 @@ const Nome = styled.b`
 `
 const ImageIcon = styled.i`
     
+`
+const MoreIcon = styled.i`
+    padding: 10px 15px;
+    transform: rotate(90deg);
 `
 const Text = styled.div`
     margin: 0 5px;
