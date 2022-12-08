@@ -16,9 +16,9 @@ const Post = ({ userName, postText }) => {
                 </div>
                 <Text>{postText}</Text>
                 <div style={{display: 'flex', margin: '5px', width: '100%', gap: 20}}>
-                    <Like />
-                    <Dislike />
-                    <Comment />
+                    <Like style={{width: 15, height: 15, cursor: 'pointer'}}/>
+                    <Dislike style={{width: 15, height: 15, cursor: 'pointer'}}/>
+                    <Comment style={{width: 15, height: 15, cursor: 'pointer'}}/>
                 </div>
             </Wrapper>
         </Container>
@@ -42,15 +42,14 @@ const Nome = styled.b`
     font-weight: bold;
     font-size: .8rem;
 `
-const ImageIcon = styled.i`
-    
-`
 const MoreIcon = styled.i`
     padding: 10px 15px;
     transform: rotate(90deg);
+    cursor: pointer;
 `
 const Text = styled.div`
     margin: 0 5px;
+    margin-bottom: 10px;
     font-size: .8rem;
     opacity: .8;
 `

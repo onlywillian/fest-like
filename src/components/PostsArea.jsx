@@ -1,43 +1,20 @@
-import { useState } from 'react';
-
 import styled from 'styled-components';
 
 import Post from './Post';
 
-const PostsArea = () => {
-    const [posts, setPosts] = useState([
-        {
-            id: 1,
-            userName: 'Will',
-            postText: 'asldasdasldsad'
-        },
-        {
-            id: 2,
-            userName: 'Will',
-            postText: 'asldasdasldsadasldasdasldsadas ldasdasldsadasldasdasldsa dasldasd asldsadas ld asdasldsad asl dasdasldsad'
-        },
-        {
-            id: 3,
-            userName: 'Will',
-            postText: 'asldasdasldsad'
-        },
-        {
-            id: 4,
-            userName: 'Will',
-            postText: 'asldasdasldsad'
-        },
-        {
-            id: 5,
-            userName: 'Will',
-            postText: 'asldasdasldsad'
-        },
-    ])
+const PostsArea = ({ posts }) => {
+    const text = posts[0] == null ? 
+    "Você não postou nada ainda, tente fazer seu primeiro post." :
+    "Os posts terminam aqui!"
 
     return ( 
         <Container>
             {posts.map(post => (
                 <Post key={post.id} userName={post.userName} postText={post.postText}/>
             ))}
+            <Last style={{}}>
+                <Text>{text}</Text>
+            </Last>
         </Container>
      );
 }
@@ -47,5 +24,15 @@ const Container = styled.div`
     flex-direction: column;
     flex: 8;
     overflow-y: auto;
+`
+const Last = styled.div`
+    margin: 20px 0;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+`
+const Text = styled.div`
+    font-size: .9rem;
+    color: gray;
 `
 export default PostsArea;

@@ -1,12 +1,13 @@
 import React from "react";
 
-function Icon({fill}) {
+function Icon({fill, handleIconClick}) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="16"
       height="16"
       viewBox="0 0 16 16"
+      onClick={handleIconClick}
     >
       <g fill="none" fillRule="evenodd" stroke="none" strokeWidth="1">
         <g transform="translate(-138 -4102)">

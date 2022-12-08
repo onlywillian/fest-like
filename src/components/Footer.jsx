@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 import styled from 'styled-components';
 
@@ -7,6 +7,12 @@ import House from '../assets/house';
 
 
 const Footer = () => {
+    const [color, setColor] = useState(true);
+
+    const handleIconClick = () => {
+        return setColor(!color);
+    }
+
     return ( 
         <Container>
             <Link 
@@ -15,8 +21,9 @@ const Footer = () => {
                     width: '10%', height: '80%', minHeight: 25, cursor: 'pointer',
                     margin: '5px 0', display: 'flex', justifyContent: 'center', alignItems: 'center'
                 }}
+                onClick={handleIconClick}
             >
-                <House fill='blue'/>
+                <House fill={color ? 'blue' : 'gray'}/>
             </Link>
 
             <Link 
@@ -25,8 +32,9 @@ const Footer = () => {
                     width: '10%', height: '80%', minHeight: 25, cursor: 'pointer',
                     margin: '5px 0', display: 'flex', justifyContent: 'center', alignItems: 'center'
                 }}
+                onClick={handleIconClick}
             >
-                <Usuario fill='gray'/>
+                <Usuario fill={!color ? 'blue' : 'gray'}/>
             </Link>
             
         </Container>

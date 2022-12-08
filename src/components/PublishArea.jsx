@@ -3,17 +3,25 @@ import styled from 'styled-components';
 import Perfil from './Perfil';
 
 import Galeria from '../assets/galeria';
+import { useState } from 'react';
 
-const PublishArea = () => {
+const PublishArea = ({ handleButtonPublishClick }) => {
+    const [userName, setUserName] = useState('Flavin do Pneu');
+    const [postData, setPostData] = useState('');
+
     return ( 
         <Container>
             <Perfil />
             <Wrapper>
                 <Nome>Flavin do Pneu</Nome>
-                <Input placeholder='Escreva algo para publicar'/>
-                <div style={{display: 'flex', gap: 50, margin: '5px'}}>
-                    <Galeria style={{height: 20, width: 10}}/>
-                    <Button>Publicar</Button>
+                <Input placeholder='Escreva algo para publicar' value={postData} onInput={e => setPostData(e.target.value)}/>
+                <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '5px'}}>
+                    <Galeria style={{height: 40, width: 40, cursor: 'pointer'}}/>
+                    <Button 
+                        onClick={() => handleButtonPublishClick(userName, postData, setPostData)}
+                    >
+                        Publicar
+                    </Button>
                 </div>
             </Wrapper>
         </Container>
@@ -44,9 +52,6 @@ const Input = styled.input`
     font-size: .8rem;
     margin: 0 5px;
 `
-const ImageIcon = styled.i`
-    flex: 1;
-`
 const Button = styled.button`
     flex: 1;
     border-radius: 0;
@@ -55,7 +60,9 @@ const Button = styled.button`
     font-weight: bold;
     border: none;
     outline: 0;
-    max-height: 30px;
+    min-height: 30px;
+    max-height: 50px;
     max-width: 80px;
+    cursor: pointer;
 `
 export default PublishArea;

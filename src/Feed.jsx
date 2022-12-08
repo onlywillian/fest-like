@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import styled from 'styled-components';
 
@@ -8,11 +8,36 @@ import PostsArea from './components/PostsArea';
 import Footer from './components/Footer';
 
 const Feed = () => {
+    const [posts, setPosts] = useState([
+        {
+            id: Math.random(10),
+            userName: 'Will_lindo',
+            postText: 'Que dia lindo hoje!'
+        },
+        {
+            id: Math.random(10),
+            userName: 'gabriel789',
+            postText: 'Copa do mundo está muito dura, quem confia no HEXA?'
+        },
+    ])
+
+    const handleButtonPublishClick = (name, data, set) => {
+        let newPosts = [...posts, {
+            id: Math.random(10),
+            userName: name,
+            postText: data
+        }];
+
+        set('')
+
+        return setPosts(newPosts);
+    }
+
     return ( 
         <Container>
             <Header />
-            <PublishArea />
-            <PostsArea />
+            <PublishArea handleButtonPublishClick={handleButtonPublishClick}/>
+            <PostsArea posts={posts}/>
             <Footer />
         </Container>
      );

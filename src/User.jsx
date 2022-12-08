@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom'
+import { useState } from 'react';
+
 import styled from 'styled-components';
 
 import Header from './components/Header';
@@ -7,11 +8,13 @@ import PostsArea from './components/PostsArea';
 import Footer from './components/Footer';
 
 const Feed = () => {
+    const [posts, setPosts] = useState([])
+
     return ( 
         <Container>
             <Header />
             <PublishArea />
-            <PostsArea />
+            <PostsArea posts={posts} />
             <Footer />
         </Container>
      );
