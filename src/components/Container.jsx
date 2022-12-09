@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { auth } from "../service/FirebaseConfig";
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Logo from '../assets/chat-logo.jpg';
@@ -7,9 +9,34 @@ import { Button } from './GlobalStyles';
 
 
 const ContainerPage = ({ type }) => {
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [signInWithEmailAndPassword, user, loading, error] =
+  useSignInWithEmailAndPassword(auth);
+
     const handleFormSubmit = e => {
         e.preventDefault();
+        signInWithEmailAndPassword(email, password);
     };
+
+    if (loading) {
+
+      return <p>carregando...</p>;
+    }
+
+//QUANDO O USUARIO E CARREGADO COM SUCESSO, REDIRECIONE PARA O FEED E MANDE PARA O SERVER AS VARIAVEIS A SEGUIR
+    if (user) {
+      const uid = user.user.uid
+      const photoURL = user.user.photoURL
+      const email = user.user.email
+
+      return console.log(user.user)
+    }
+    if(error){
+      console.log(error.code)
+    }
 
     return ( 
         <Container>
@@ -20,12 +47,12 @@ const ContainerPage = ({ type }) => {
                 <HeaderLogo src={Logo}/>
             </Header>
             <Form method="post" onSubmit={handleFormSubmit}>
-                <Input type="text" placeholder='Email'/>
-                <Input type="text" placeholder='Senha'/>
+                <Input type="text" placeholder='Email' onChange={(e) => setEmail(e.target.value)}/>
+                <Input type="text" placeholder='Senha' onChange={(e) => setPassword(e.target.value)}/>
                 <P>* Ao Clicar no botão abaixo você está concordando com todos os Termos de Usuário do nosso site</P>
-                <Link to="/feed">
+                
                   <Button type='submit'>{type === 'signup' ? 'Cadastrar-se' : 'Login'}</Button>
-                </Link>
+                
                 <div>
                     {type === 'signup' ? <Link to={'/login'}>Não tem uma conta? Faça Login</Link> 
                         : 
